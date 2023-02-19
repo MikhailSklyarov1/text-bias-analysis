@@ -5,28 +5,29 @@ import random
 
 # Create your views here.
 
+text = Text(text='_NO_TEXT_')
+
 
 def index_page(request):
 
 
-    #new_worker = Worker(name='Ivan', second_name='Ivanov', salary=110)
-    #new_worker.save()
-
-    '''person = Worker.objects.get(id=5)
-    person.second_name='Petrov'
-    person.save()
 
 
-    all_workers = Worker.objects.all()
+    global text
+    button = request.GET.get('name')
+    if(button == 'yes'):
+        ans = Answer(name=text.text, answer=0)
+        ans.save()
+    elif(button == 'no'):
+        ans = Answer(name=text.text, answer=1)
+        ans.save()
+    else:
+        print('-----------++++++++')
 
-    for i in all_workers:
-        print(i.name,' --- ', i.salary, ' --- ', i.pk)
 
 
-    workers_filtered = Worker.objects.filter(salary=500)'''
 
-    text = Text.objects.get(id=random.randint(1,4))
-
+    text = Text.objects.get(id=random.randint(1,6))
     
 
     return render(request, 'index.html', {'text': text})
